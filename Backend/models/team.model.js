@@ -5,4 +5,4 @@ const teamSchema = new mongoose.Schema({
   description: { type: String },
 });
 
-module.exports = mongoose.model.mongoose("Team", teamSchema);
+module.exports = mongoose.model("Team", teamSchema);
