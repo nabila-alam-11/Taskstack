@@ -1,0 +1,44 @@
+.login-navbar {
+  padding-inline: 5rem;
+}
+.login-navbar a {
+  font-size: 1.8rem;
+  font-family: cursive;
+  color: rgb(195, 45, 45);
+}
+.form {
+  width: 30%;
+  margin: 10% auto;
+  background-color: rgb(248, 249, 250);
+  padding-inline: 2.5rem;
+  padding-block: 2.5rem;
+  padding-bottom: 3.5rem;
+  margin-top: 7rem;
+  border-radius: 5px;
+}
+.form h3 {
+  color: rgb(195, 45, 45);
+  letter-spacing: 1.2px;
+}
+.form p {
+  color: grey;
+  letter-spacing: 1.2px;
+}
+.form label {
+  font-size: 1.1rem;
+  letter-spacing: 1.2px;
+  color: rgb(80, 79, 79);
+}
+.form input::placeholder {
+  color: rgb(153, 152, 152);
+}
+.form button {
+  width: 100%;
+  background-color: rgb(213, 34, 34);
+  border: red;
+  font-size: 1.2rem;
+  letter-spacing: 1.2px;
+}
+.form button:hover {
+  background-color: rgb(180, 25, 25);
+}
