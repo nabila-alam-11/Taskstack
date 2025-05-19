@@ -42,3 +42,9 @@
 .form button:hover {
   background-color: rgb(180, 25, 25);
 }
+
+@media (max-width: 972px) {
+  .form {
+    width: 60%;
+  }
+}

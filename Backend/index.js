@@ -1,8 +1,11 @@
 const express = require("express");
+const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const app = express();
 
-const cors = require("cors");
 const corsOptions = {
   origin: "*",
   credentials: "*",
@@ -32,6 +35,68 @@ app.get("/", (req, res) => {
       <p style="font-size: 1.2rem; color: #555;">Workasana is a task management and team collaboration tool where users can create projects, assign tasks to teams and owners, set deadlines, and organize work using tags. It supports authentication, dynamic filtering, URL-based queries, and reporting features to track task progress and team productivity.</p>
     </div>
     `);
+});
+
+//========================
+//********* LOGIN /SIGN UP*********
+//========================
+
+// Middleware
+const verifyJWT = (req, res, next) => {
+  const token = req.headers["authorization"];
+  if (!token) {
+    return res.status(401).json({ message: "No token provided." });
+  }
+
+  try {
+    const decodedToken = jwt.verify(token, JWT_SECRET);
+    req.user = decodedToken;
+    next();
+  } catch (error) {
+    return res.status(402).json({ message: "Invalid token" });
+  }
+};
+
+app.post("/signup", async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+    if (await Owner.findOne({ email })) {
+      return res.status(400).json({ message: "Email already exists." });
+    }
+    const user = new Owner({ name, email, password });
+    await user.save();
+    res.json({ message: "User Created" });
+  } catch (err) {
+    res.status(500).json({ message: "Signup failed", err });
+  }
+});
+
+app.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await Owner.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch)
+      return res.status(400).json({ message: "Invalid credentials" });
+
+    const token = jwt.sign({ id: user._id, email }, JWT_SECRET, {
+      expiresIn: "24h",
+    });
+    res.json({ token });
+  } catch (error) {
+    res.status(500).json({ message: "Login failed", err });
+  }
+});
+
+// Protected Route
+
+app.get("/admin/api/data", verifyJWT, (req, res) => {
+  res.json({ message: "Protected route accessible." });
 });
 
 //========================
@@ -245,7 +310,7 @@ async function addNewUser(newUser) {
 
 app.post("/v1/users", async (req, res) => {
   try {
-    const { name, email } = req.body;
+    const { name, email, password } = req.body;
     const existingUser = await Owner.findOne({ email });
     if (existingUser) {
       res
