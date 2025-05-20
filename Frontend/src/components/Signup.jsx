@@ -1,6 +1,5 @@
-import "../css/login.css";
 import { Link } from "react-router-dom";
-const Login = () => {
+const Signup = () => {
   return (
     <>
       <nav class="navbar bg-body-tertiary login-navbar">
@@ -11,11 +10,21 @@ const Login = () => {
         </div>
       </nav>
       <div className="form">
-        <h3 className="text-center mt-4">Log in to your account</h3>
+        <h3 className="text-center mt-4">Sign Up </h3>
         <p className="text-center text-lightgray">Please enter your details</p>
         <form>
+          <label htmlFor="name" className="mb-2">
+            Name:{" "}
+          </label>
+          <input
+            className="mb-4 form-control"
+            type="text"
+            required
+            id="name"
+            placeholder="Enter your name"
+          />
           <label className="mb-2" htmlFor="email">
-            Email:{" "}
+            Email:
           </label>
           <input
             type="text"
@@ -25,7 +34,7 @@ const Login = () => {
             placeholder="Enter your email"
           />
           <label className="mb-2" htmlFor="password">
-            Password:{" "}
+            Password:
           </label>
           <input
             type="password"
@@ -33,13 +42,13 @@ const Login = () => {
             className="form-control mb-4"
             placeholder="Password"
           />
-          <button className="btn btn-primary mt-2">Sign In</button>
+          <button className="btn btn-primary mt-2">Sign Up</button>
           <p className="no-account">
-            Don't have an account? <Link to="/signup">Sign up</Link>
+            Already have an account? <Link to="/login">Sign In</Link>
           </p>
         </form>
       </div>
     </>
   );
 };
-export default Login;
+export default Signup;

@@ -1,0 +1,126 @@
+/* ------------------- RESET ------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ------------------ COLORS ------------------- */
+:root {
+  --clr-primary-1: #2f3e46; /* sidebar background */
+  --clr-primary-2: #354f52; /* (unused here, keep if needed) */
+  --clr-primary-3: #52796f; /* accent / active link */
+}
+
+/* ------------------ LAYOUT ------------------- */
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 20%;
+  height: 100vh;
+  background-color: var(--clr-primary-1);
+  margin-bottom: 0 !important;
+}
+
+/* ------------------ LOGO --------------------- */
+.sidebar h1 {
+  color: #fff;
+  font-family: cursive;
+  padding: 1rem;
+  padding-left: 1.5rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  padding-top: 1.5rem;
+  font-weight: 500;
+  font-size: 2.2rem;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background: #fff;
+  margin-bottom: 2.5rem;
+}
+
+/* ------------------ LIST --------------------- */
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.sidebar li {
+  margin-bottom: 2.5rem;
+}
+
+/* ------------------ LINK --------------------- */
+.sidebar li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2rem;
+  letter-spacing: 1.3px;
+}
+
+.sidebar a.active {
+  background: var(--clr-primary-3);
+}
+
+.sidebar a:not(.active):hover {
+  background: var(--clr-primary-3);
+}
+
+.sidebar img {
+  height: 22px;
+  padding-right: 1rem;
+}
+.responsive-brand {
+  background-color: var(--clr-primary-2);
+  color: #fff;
+  text-align: center;
+  padding-block: 0.67rem;
+  letter-spacing: 1.5px;
+  font-family: cursive;
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    width: 6%;
+    margin-top: 1px;
+  }
+  .brand {
+    display: none;
+  }
+
+  .sidebar-names {
+    display: none;
+  }
+  .line {
+    display: none;
+  }
+  .responsive-brand {
+    margin-bottom: 0 !important;
+    display: block;
+  }
+}
+@media (max-width: 728px) {
+  .sidebar ul {
+    padding-top: 1.5rem;
+  }
+  .sidebar img {
+    height: 19.5px;
+  }
+  .sidebar li a {
+    padding-left: 0.5rem !important;
+  }
+  .responsive-brand {
+    font-size: 1.5rem;
+  }
+}

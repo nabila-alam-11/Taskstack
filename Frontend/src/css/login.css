@@ -1,10 +1,15 @@
+:root {
+  --clr-primary-1: #2f3e46;
+  --clr-primary-2: #354f52;
+  --clr-primary-3: #52796f;
+}
 .login-navbar {
   padding-inline: 5rem;
 }
 .login-navbar a {
   font-size: 1.8rem;
   font-family: cursive;
-  color: rgb(195, 45, 45);
+  color: var(--clr-primary-1);
 }
 .form {
   width: 30%;
@@ -17,7 +22,7 @@
   border-radius: 5px;
 }
 .form h3 {
-  color: rgb(195, 45, 45);
+  color: var(--clr-primary-1);
   letter-spacing: 1.2px;
 }
 .form p {
@@ -34,13 +39,25 @@
 }
 .form button {
   width: 100%;
-  background-color: rgb(213, 34, 34);
-  border: red;
+  background-color: var(--clr-primary-2);
+  border: var(--clr-primary-1);
   font-size: 1.2rem;
   letter-spacing: 1.2px;
 }
 .form button:hover {
-  background-color: rgb(180, 25, 25);
+  background-color: var(--clr-primary-3);
+}
+.form p > a {
+  color: var(--clr-primary-2);
+  text-decoration: none;
+}
+.form p > a:hover {
+  color: var(--clr-primary-3);
+}
+.no-account {
+  margin-top: 2.3rem;
+  font-family: sans-serif;
+  text-align: center;
 }
 
 @media (max-width: 972px) {
