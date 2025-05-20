@@ -41,6 +41,32 @@ app.get("/", (req, res) => {
 //********* LOGIN /SIGN UP*********
 //========================
 
+app.post("/v1/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ message: "All fields are required!" });
+    }
+    const user = await Owner.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email or password." });
+    }
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      user.hashedPassword
+    );
+
+    if (!isPasswordCorrect) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    res.status(201).json(user);
+    console.log(user);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch user." });
+  }
+});
+
 // Middleware
 
 //========================
@@ -255,13 +281,22 @@ async function addNewUser(newUser) {
 app.post("/v1/users", async (req, res) => {
   try {
     const { name, email, password } = req.body;
+    if (!email || !name || !password) {
+      return res.status(400).json({ message: "All fields are required!" });
+    }
     const existingUser = await Owner.findOne({ email });
     if (existingUser) {
       res
         .status(409)
         .json({ error: `Owner with email '${email}' already exists.` });
     }
-    const savedUser = await addNewUser(req.body);
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const savedUser = await addNewUser({
+      name: req.body.name,
+      email: req.body.email,
+      hashedPassword: hashedPassword,
+    });
     res.status(201).json({
       success: true,
       message: `${name} added successfully.`,
