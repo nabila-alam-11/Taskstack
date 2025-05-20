@@ -6,9 +6,8 @@ const bcrypt = require("bcrypt");
 const app = express();
 
 const corsOptions = {
-  origin:
-    "https://workasana-backend-4vnae8tgu-nabila-alams-projects.vercel.app/",
-  credentials: "true",
+  origin: "https://localhost:5173",
+  credentials: true,
   optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
