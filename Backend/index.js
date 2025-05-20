@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const JWT_SECRET = process.env.JWT_SECRET;
 
 const app = express();
 
@@ -41,6 +40,64 @@ app.get("/", (req, res) => {
 //********* LOGIN /SIGN UP*********
 //========================
 
+const verifyToken = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  // Check if header exists and starts with "Bearer"
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ message: "Authorization token missing" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    // Verify token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded; // Save user info in request object
+    next(); // Allow request to proceed
+  } catch (err) {
+    return res.status(403).json({ message: "Invalid or expired token" });
+  }
+};
+
+async function addNewUser(newUser) {
+  try {
+    const savedUser = new Owner(newUser);
+    return await savedUser.save();
+  } catch (error) {
+    throw error;
+  }
+}
+
+app.post("/v1/register", async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+    if (!email || !name || !password) {
+      return res.status(400).json({ message: "All fields are required!" });
+    }
+    const existingUser = await Owner.findOne({ email });
+    if (existingUser) {
+      res
+        .status(409)
+        .json({ error: `Owner with email '${email}' already exists.` });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const savedUser = await addNewUser({
+      name: req.body.name,
+      email: req.body.email,
+      hashedPassword: hashedPassword,
+    });
+    res.status(201).json({
+      success: true,
+      message: `${name} added successfully.`,
+      User: savedUser,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to add user." });
+  }
+});
+
 app.post("/v1/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -60,11 +117,29 @@ app.post("/v1/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    res.status(201).json(user);
-    console.log(user);
+    // Generate JWT token
+    const token = jwt.sign(
+      { id: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" }
+    );
+
+    res.status(200).json({
+      message: "Login successful",
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch user." });
+    res.status(500).json({ error: "Failed to login." });
   }
+});
+
+app.get("/dashboard", verifyToken, (req, res) => {
+  res.json({ message: `Welcome, user ${req.user.email}` });
 });
 
 // Middleware
@@ -269,43 +344,6 @@ app.post("/v1/teams/:teamId/team-info", async (req, res) => {
 //========================
 //******** OWNERS ********
 //========================
-async function addNewUser(newUser) {
-  try {
-    const savedUser = new Owner(newUser);
-    return await savedUser.save();
-  } catch (error) {
-    throw error;
-  }
-}
-
-app.post("/v1/users", async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
-    if (!email || !name || !password) {
-      return res.status(400).json({ message: "All fields are required!" });
-    }
-    const existingUser = await Owner.findOne({ email });
-    if (existingUser) {
-      res
-        .status(409)
-        .json({ error: `Owner with email '${email}' already exists.` });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const savedUser = await addNewUser({
-      name: req.body.name,
-      email: req.body.email,
-      hashedPassword: hashedPassword,
-    });
-    res.status(201).json({
-      success: true,
-      message: `${name} added successfully.`,
-      User: savedUser,
-    });
-  } catch (error) {
-    res.status(500).json({ error: "Failed to add user." });
-  }
-});
 
 async function getUsers() {
   try {
