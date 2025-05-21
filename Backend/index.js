@@ -138,7 +138,7 @@ app.post("/v1/login", async (req, res) => {
   }
 });
 
-app.get("/dashboard", verifyToken, (req, res) => {
+app.get("/v1/login", verifyToken, (req, res) => {
   res.json({ message: `Welcome, user ${req.user.email}` });
 });
 
