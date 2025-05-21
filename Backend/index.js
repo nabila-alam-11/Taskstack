@@ -5,13 +5,12 @@ const bcrypt = require("bcrypt");
 
 const app = express();
 
-const corsOptions = {
-  origin: "*",
-  credentials: true,
-  optionSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
-
+// const corsOptions = {
+//   origin: "*",
+//   credentials: true,
+//   optionSuccessStatus: 200,
+// };
+app.use(cors());
 app.use(express.json());
 
 const Task = require("./models/task.model");
@@ -28,12 +27,9 @@ initializeDatabase();
 //========================
 
 app.get("/", (req, res) => {
-  res.send(` 
-    <div style="font-family: Arial, sans-serif; background: #f0f4f8; padding: 50px; text-align: center;">
-      <h1 style="color: #2c3e50; font-size: 3rem;">✨ Welcome to <span style="color: green;">WORKASANA</span> ✨</h1>
-      <p style="font-size: 1.2rem; color: #555;">Workasana is a task management and team collaboration tool where users can create projects, assign tasks to teams and owners, set deadlines, and organize work using tags. It supports authentication, dynamic filtering, URL-based queries, and reporting features to track task progress and team productivity.</p>
-    </div>
-    `);
+  res.send(
+    `<h1 style="color: #2c3e50; font-size: 3rem;">✨ Welcome to <span style="color: green;">WORKASANA</span> ✨</h1>`
+  );
 });
 
 //========================
@@ -51,10 +47,9 @@ const verifyToken = (req, res, next) => {
   const token = authHeader.split(" ")[1];
 
   try {
-    // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // Save user info in request object
-    next(); // Allow request to proceed
+    req.user = decoded;
+    next();
   } catch (err) {
     return res.status(403).json({ message: "Invalid or expired token" });
   }
@@ -77,7 +72,7 @@ app.post("/v1/register", async (req, res) => {
     }
     const existingUser = await Owner.findOne({ email });
     if (existingUser) {
-      res
+      return res
         .status(409)
         .json({ error: `Owner with email '${email}' already exists.` });
     }
@@ -141,8 +136,6 @@ app.post("/v1/login", async (req, res) => {
 app.get("/v1/login", verifyToken, (req, res) => {
   res.json({ message: `Welcome, user ${req.user.email}` });
 });
-
-// Middleware
 
 //========================
 //******** TASK ********
