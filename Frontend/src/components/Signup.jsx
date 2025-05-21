@@ -1,5 +1,41 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, Navigate, useAsyncError, useNavigate } from "react-router-dom";
 const Signup = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch(
+        "https://workasana-backend-eight.vercel.app/v1/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, password }),
+        }
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.message || "Signup failed");
+        return;
+      }
+
+      localStorage.setItem("token", data.token);
+      navigate("/dashboard");
+    } catch (error) {
+      setError("Something went wrong");
+    }
+  };
   return (
     <>
       <nav class="navbar bg-body-tertiary login-navbar">
@@ -12,7 +48,7 @@ const Signup = () => {
       <div className="form">
         <h3 className="text-center mt-4">Sign Up </h3>
         <p className="text-center text-lightgray">Please enter your details</p>
-        <form>
+        <form onClick={handleSubmit}>
           <label htmlFor="name" className="mb-2">
             Name:{" "}
           </label>
@@ -22,6 +58,8 @@ const Signup = () => {
             required
             id="name"
             placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <label className="mb-2" htmlFor="email">
             Email:
@@ -32,6 +70,8 @@ const Signup = () => {
             required
             className="form-control mb-4"
             placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <label className="mb-2" htmlFor="password">
             Password:
@@ -41,8 +81,12 @@ const Signup = () => {
             id="password"
             className="form-control mb-4"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="btn btn-primary mt-2">Sign Up</button>
+          <button className="btn btn-primary mt-2" type="submit">
+            Sign Up
+          </button>
           <p className="no-account">
             Already have an account? <Link to="/login">Sign In</Link>
           </p>

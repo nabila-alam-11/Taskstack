@@ -13,7 +13,7 @@ const Login = () => {
 
     try {
       const res = await fetch(
-        "https://workasana-backend-4vnae8tgu-nabila-alams-projects.vercel.app/v1/login",
+        "https://workasana-backend-eight.vercel.app/v1/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -22,7 +22,6 @@ const Login = () => {
       );
 
       const data = await res.json();
-      console.log(data);
 
       if (!res.ok) {
         setError(data.message || "Login Falied");

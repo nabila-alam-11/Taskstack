@@ -64,7 +64,7 @@ async function addNewUser(newUser) {
   }
 }
 
-app.post("/v1/register", async (req, res) => {
+app.post("/auth/signup", async (req, res) => {
   try {
     const { name, email, password } = req.body;
     if (!email || !name || !password) {
@@ -93,7 +93,7 @@ app.post("/v1/register", async (req, res) => {
   }
 });
 
-app.post("/v1/login", async (req, res) => {
+app.post("/auth/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
