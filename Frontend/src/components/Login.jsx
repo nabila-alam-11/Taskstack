@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
-  const [passowrd, setPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -17,11 +17,12 @@ const Login = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, passowrd }),
+          body: JSON.stringify({ email, password }),
         }
       );
 
       const data = await res.json();
+      console.log(data);
 
       if (!res.ok) {
         setError(data.message || "Login Falied");
@@ -38,9 +39,9 @@ const Login = () => {
 
   return (
     <>
-      <nav class="navbar bg-body-tertiary login-navbar">
-        <div class="container-fluid">
-          <a class="navbar-brand text-blue fw-3" href="#">
+      <nav className="navbar bg-body-tertiary login-navbar">
+        <div className="container-fluid">
+          <a className="navbar-brand text-blue fw-3" href="#">
             Workasana
           </a>
         </div>
@@ -69,7 +70,7 @@ const Login = () => {
             id="password"
             className="form-control mb-4"
             placeholder="Password"
-            value={passowrd}
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <button className="btn btn-primary mt-2" type="submit">
