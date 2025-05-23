@@ -13,7 +13,7 @@ const Signup = () => {
 
     try {
       const res = await fetch(
-        "https://workasana-backend-eight.vercel.app/v1/register",
+        "https://workasana-backend-eight.vercel.app/auth/signup",
         {
           method: "POST",
           headers: {
@@ -38,9 +38,9 @@ const Signup = () => {
   };
   return (
     <>
-      <nav class="navbar bg-body-tertiary login-navbar">
-        <div class="container-fluid">
-          <a class="navbar-brand text-blue fw-3" href="#">
+      <nav className="navbar bg-body-tertiary login-navbar">
+        <div className="container-fluid">
+          <a className="navbar-brand text-blue fw-3" href="#">
             Workasana
           </a>
         </div>

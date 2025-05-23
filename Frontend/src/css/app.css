@@ -1,0 +1,20 @@
+:root {
+  --clr-primary-1: #aa60c8;
+  --clr-primary-2: #d69ade;
+  --clr-primary-3: #eabde6;
+  --clr-primary-4: #ffdfef;
+}
+.title {
+  background: var(--clr-primary-2);
+  width: 85dvw;
+  padding-block: 1.16rem;
+  padding-inline: 5rem;
+  font-size: 2rem;
+  letter-spacing: 1.5px;
+  border-left: 1px solid #fff;
+  color: #3b2046;
+}
+.main {
+  border-left: 1px solid #fff;
+  background-color: #fff;
+}
