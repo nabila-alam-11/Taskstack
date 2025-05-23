@@ -133,6 +133,24 @@ app.post("/auth/login", async (req, res) => {
   }
 });
 
+app.get("/auth/me", verifyToken, async (req, res) => {
+  try {
+    const user = await Owner.findById(req.user.id).select("-hashedPassword");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 app.get("/auth/login", verifyToken, (req, res) => {
   res.json({ message: `Welcome, user ${req.user.email}` });
 });
