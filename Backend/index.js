@@ -17,7 +17,7 @@ const Task = require("./models/task.model");
 const Team = require("./models/team.model");
 const Tag = require("./models/tag.model");
 const Projects = require("./models/project.model");
-const Owner = require("./models/user.model");
+const User = require("./models/user.model");
 
 const { initializeDatabase } = require("./db/db.connect");
 initializeDatabase();
@@ -59,7 +59,7 @@ const verifyToken = (req, res, next) => {
 
 async function addNewUser(newUser) {
   try {
-    const savedUser = new Owner(newUser);
+    const savedUser = new User(newUser);
     return await savedUser.save();
   } catch (error) {
     throw error;
@@ -72,7 +72,7 @@ app.post("/auth/signup", async (req, res) => {
     if (!email || !name || !password) {
       return res.status(400).json({ message: "All fields are required!" });
     }
-    const existingUser = await Owner.findOne({ email });
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res
         .status(409)
@@ -142,7 +142,7 @@ app.get("/auth/login", verifyToken, (req, res) => {
 
 app.get("/auth/me", verifyToken, async (req, res) => {
   try {
-    const user = await Owner.findById(req.user._id).select("-hashedPassword");
+    const user = await User.findById(req.user._id).select("-hashedPassword");
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -361,7 +361,7 @@ app.post("/v1/teams/:teamId/team-info", async (req, res) => {
 
 async function getUsers() {
   try {
-    const users = await Owner.find();
+    const users = await User.find();
     return users;
   } catch (error) {
     throw error;
@@ -383,7 +383,7 @@ app.get("/v1/users", async (req, res) => {
 
 async function deleteUserByName(userName) {
   try {
-    const deletedUser = await Owner.findOneAndDelete({ name: userName });
+    const deletedUser = await User.findOneAndDelete({ name: userName });
     return deletedUser;
   } catch (error) {
     throw error;
@@ -407,7 +407,7 @@ app.delete("/v1/users/:userName", async (req, res) => {
 
 async function updateUserById(userId, dataToUpdated) {
   try {
-    const updatedUser = await Owner.findByIdAndUpdate(userId, dataToUpdated);
+    const updatedUser = await User.findByIdAndUpdate(userId, dataToUpdated);
     return updatedUser;
   } catch (error) {
     throw error;
