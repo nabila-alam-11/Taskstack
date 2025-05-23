@@ -131,6 +131,7 @@ app.post("/auth/login", async (req, res) => {
       },
     });
   } catch (error) {
+    console.log(error.message);
     res.status(500).json({ error: "Failed to login." });
   }
 });
@@ -141,7 +142,7 @@ app.get("/auth/login", verifyToken, (req, res) => {
 
 app.get("/auth/me", verifyToken, async (req, res) => {
   try {
-    const user = await Owner.findById(req.user.id).select("-hashedPassword");
+    const user = await Owner.findById(req.user._id).select("-hashedPassword");
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
