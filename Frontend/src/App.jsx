@@ -4,7 +4,7 @@ import useFetch from "./useFetch";
 
 const App = () => {
   const { data, error } = useFetch(
-    "https://workasana-backend-eight.vercel.app/v1/tasks",
+    "https://workasana-backend-eight.vercel.app/auth/me",
     []
   );
   console.log(data);
