@@ -7,4 +7,4 @@ const userSchema = new mongoose.Schema({
   hashedPassword: { type: String, required: true },
 });
 
-module.exports = mongoose.model("Owner", userSchema);
+module.exports = mongoose.model("User", userSchema);
