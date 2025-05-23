@@ -10,7 +10,7 @@ const useFetch = (url) => {
       const headers = {
         "Content-Type": "application/json",
       };
-      if (!token) {
+      if (token) {
         headers.Authorization = `Bearer ${token}`;
       }
       const response = await fetch(url, {
