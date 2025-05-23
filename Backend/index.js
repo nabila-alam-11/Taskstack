@@ -39,6 +39,8 @@ app.get("/", (req, res) => {
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
+  console.log("Auth Header: ", req.headers.authorization);
+
   // Check if header exists and starts with "Bearer"
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({ message: "Authorization token missing" });
