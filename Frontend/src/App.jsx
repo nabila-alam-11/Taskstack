@@ -20,7 +20,6 @@ const App = () => {
   const projects = tasks?.filter((task) =>
     task?.owners?.find((owner) => owner?.name === user?.name)
   );
-  console.log(projects);
 
   const getsStatusColor = (status) => {
     if (status === "To Do") return "#f9e79f";
@@ -40,7 +39,7 @@ const App = () => {
           <div className="d-flex projects">
             {data?.map((project) => (
               <Link
-                to={`/project/${project._id}`}
+                to={`/project/${project.name}`}
                 className="card me-5 project"
                 key={project?._id}
               >

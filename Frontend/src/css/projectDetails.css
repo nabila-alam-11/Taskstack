@@ -1,0 +1,20 @@
+.title {
+  background: var(--clr-primary-2);
+  width: 85dvw;
+  padding-block: 1.26rem;
+  padding-inline: 6rem 96px;
+  font-size: 1.8rem;
+  letter-spacing: 1.5px;
+  border-left: 1px solid #fff;
+  color: #3b2046;
+  margin-left: 15rem;
+}
+.tasks-container {
+  margin-top: 4rem;
+  margin-left: 21rem;
+}
+#tasks {
+  padding-block: 0.56rem;
+  padding-inline: 1rem;
+  width: 90%;
+}
