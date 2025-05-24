@@ -8,7 +8,8 @@ const initializeDatabase = async () => {
     await mongoose.connect(mongoUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 10000, // Wait 10s before timeout
+      serverSelectionTimeoutMS: 10000,
+      useCreateIndex: true, // Wait 10s before timeout
       socketTimeoutMS: 45000, // Response wait timeout
     });
 
