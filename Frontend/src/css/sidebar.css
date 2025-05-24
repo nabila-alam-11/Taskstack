@@ -54,3 +54,6 @@
 .offcanvas-header {
   background-color: var(--clr-primary-1);
 }
+.sidebar {
+  position: fixed;
+}

@@ -9,6 +9,7 @@ import Projects from "./pages/Projects.jsx";
 import Teams from "./pages/Teams.jsx";
 import Report from "./pages/Report.jsx";
 import Settings from "./pages/Settings.jsx";
+import ProjectDetails from "./pages/ProjectDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/settings",
     element: <Settings />,
+  },
+  {
+    path: "/project/:projectId",
+    element: <ProjectDetails />,
   },
 ]);
 createRoot(document.getElementById("root")).render(
