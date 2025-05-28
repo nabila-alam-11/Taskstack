@@ -10,6 +10,9 @@ import Teams from "./pages/Teams.jsx";
 import Report from "./pages/Report.jsx";
 import Settings from "./pages/Settings.jsx";
 import ProjectDetails from "./pages/ProjectDetails.jsx";
+import TaskDetails from "./pages/TaskDetails.jsx";
+import { TaskProvider } from "./contexts/TaskContext.jsx";
+import { TeamProvider } from "./contexts/TeamContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -44,9 +47,17 @@ const router = createBrowserRouter([
     path: "/project/:projectName",
     element: <ProjectDetails />,
   },
+  {
+    path: "/task/:taskName",
+    element: <TaskDetails />,
+  },
 ]);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <TeamProvider>
+      <TaskProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </TaskProvider>
+    </TeamProvider>
   </StrictMode>
 );

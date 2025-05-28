@@ -13,7 +13,6 @@
   letter-spacing: 1.5px;
   border-left: 1px solid #fff;
   color: #3b2046;
-  margin-left: 15rem;
 }
 .main {
   border-left: 1px solid #fff;
@@ -25,12 +24,15 @@
   margin-left: 18rem;
 }
 .projects-container h3 {
-  margin-bottom: 2rem;
   color: #74358d;
+  font-size: 1.4rem !important;
 }
 .projects {
   flex-wrap: wrap;
   gap: 1rem;
+}
+.projects a {
+  text-decoration: none;
 }
 .project {
   text-decoration-line: none;
@@ -40,6 +42,14 @@
   border: none !important;
   width: 28%;
 }
+.projects-container select {
+  height: 2rem;
+  border: 1px solid rgb(179, 178, 178);
+  outline: none;
+  border-radius: 5px;
+  color: rgb(97, 97, 97);
+}
+
 .project h5 {
   color: #74358d;
   font-size: 1.3rem;

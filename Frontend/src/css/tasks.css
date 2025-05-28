@@ -1,0 +1,35 @@
+.addTask {
+  height: 2rem;
+  margin-right: 6rem;
+  outline: none;
+  border: 1px solid rgb(205, 204, 204);
+  border-radius: 5px;
+  color: #fff;
+  background-color: #74358d;
+  letter-spacing: 1.2px;
+  padding-inline: 0.56rem;
+}
+.addTask:hover {
+  background-color: #562968;
+}
+.add-task {
+  background-color: #74358d;
+  color: #fff;
+  padding-block: 0.25rem;
+  padding-inline: 1rem;
+  width: 5rem;
+  outline: none;
+  border-radius: 5px;
+  letter-spacing: 1.2px;
+  font-size: 1.2rem;
+  border: 1px solid #74358d;
+}
+.add-task:hover {
+  background-color: #562968;
+}
+
+/* Task Details */
+.task-details {
+  width: 50rem;
+  margin-left: 21rem;
+}

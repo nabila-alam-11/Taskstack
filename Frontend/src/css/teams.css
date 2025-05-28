@@ -1,0 +1,30 @@
+.teams-list {
+  width: 70%;
+  margin-left: 21rem;
+}
+.team {
+  margin-right: 11.5rem;
+}
+.add-team-btn {
+  background-color: #aa60c8;
+  color: white;
+  outline: #aa60c8;
+  border: #aa60c8;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  padding-inline: 15px;
+}
+/* Team Modal */
+.addTeam {
+  height: 2.5rem;
+  outline: none;
+  border: 1px solid rgb(205, 204, 204);
+  border-radius: 5px;
+  color: #fff;
+  background-color: #74358d;
+  letter-spacing: 1.2px;
+  padding-inline: 0.56rem;
+}
+.modal {
+  margin-top: 4rem;
+}

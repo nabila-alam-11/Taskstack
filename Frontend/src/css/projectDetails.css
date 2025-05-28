@@ -9,12 +9,36 @@
   color: #3b2046;
   margin-left: 15rem;
 }
-.tasks-container {
-  margin-top: 4rem;
+.task-list-heading {
   margin-left: 21rem;
+  color: #3b2046;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.tasks-container {
+  margin-left: 21rem;
+  /* width: 85%; */
 }
 #tasks {
   padding-block: 0.56rem;
   padding-inline: 1rem;
   width: 90%;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+.list-group-item h5 {
+  letter-spacing: 2px;
+}
+
+.sts {
+  display: inline-block;
+  padding-inline: 1rem;
+  padding-block: 0.23rem;
+  display: flex;
+  justify-content: left;
+  margin-right: 10rem;
+}
+.owner {
+  display: flex;
+  justify-self: flex-end;
 }
