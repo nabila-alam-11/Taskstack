@@ -218,7 +218,7 @@ app.get("/v1/tasks/last-week", async (req, res) => {
     const completedTasks = await Task.find({
       status: "Completed",
       updatedAt: { $gte: sevenDaysAgo },
-    });
+    }).populate("owners");
 
     res.status(200).json(completedTasks);
   } catch (err) {

@@ -30,9 +30,22 @@ const Report = () => {
     "https://workasana-backend-eight.vercel.app/auth/me"
   );
 
+  const { data: tasksCompleted } = useFetch(
+    "https://workasana-backend-eight.vercel.app/v1/tasks/last-week"
+  );
+
+  console.log(tasks);
   const userData = tasks?.filter((task) =>
     task?.owners?.some((owner) => owner?.name === user?.name)
   );
+
+  console.log(tasksCompleted);
+
+  const tasksCompletedByOwner = tasksCompleted?.filter((task) =>
+    task?.owners?.some((owner) => owner?.name === user?.name)
+  );
+
+  console.log(tasksCompletedByOwner);
 
   if (!tasks || !user || !userData) {
     return (
