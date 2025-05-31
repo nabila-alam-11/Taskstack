@@ -209,6 +209,23 @@ app.get("/v1/tasks", async (req, res) => {
   }
 });
 
+app.get("/v1/tasks/last-week", async (req, res) => {
+  try {
+    const now = new Date();
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(now.getDate() - 7);
+
+    const completedTasks = await Task.find({
+      status: "Completed",
+      updatedAt: { $gte: sevenDaysAgo },
+    });
+
+    res.status(200).json(completedTasks);
+  } catch (err) {
+    res.status(500).json({ error: "Internal Server error" });
+  }
+});
+
 async function deleteTaskById(taskId) {
   try {
     const deletedTask = await Task.findByIdAndDelete(taskId);
