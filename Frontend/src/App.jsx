@@ -37,7 +37,6 @@ const App = () => {
   const filterByStatus = projects?.filter((project) =>
     status ? project.status === status : true
   );
-  console.log(filterByStatus);
   return (
     <div className="d-flex">
       <Sidebar />

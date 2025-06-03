@@ -19,26 +19,42 @@
   margin-left: 21rem;
   /* width: 85%; */
 }
-#tasks {
-  padding-block: 0.56rem;
-  padding-inline: 1rem;
-  width: 90%;
-  /* justify-content: space-between; */
-  align-items: center;
-}
+
 .list-group-item h5 {
   letter-spacing: 2px;
 }
-
-.sts {
-  display: inline-block;
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.56rem;
   padding-inline: 1rem;
-  padding-block: 0.23rem;
-  display: flex;
-  justify-content: left;
-  margin-right: 10rem;
+  width: 90%;
+  gap: 1rem;
+  border-bottom: 1px solid #ddd;
 }
-.owner {
-  display: flex;
-  justify-self: flex-end;
+.task-name {
+  flex: 3;
+}
+.task-status {
+  flex: 1;
+  text-align: center;
+  padding: 0.3rem 0.23rem;
+  border-radius: 4px;
+  margin-right: 6rem;
+}
+.task-owners {
+  flex: 2;
+  gap: 0.5rem;
+}
+.task-time {
+  flex: 1;
+  text-align: right;
+}
+.date {
+  margin: 0;
+}
+.task-modal {
+  margin-top: 2rem;
+  margin-right: 3rem;
 }
