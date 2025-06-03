@@ -2,3 +2,20 @@
   margin-left: 21rem;
   margin-block: 1.5rem;
 }
+.center-div {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+}
+.chart-container {
+  background-color: rgb(250, 248, 248);
+  padding-bottom: 5rem;
+  padding-top: 2rem;
+  padding-inline: 2rem;
+  border-radius: 5px;
+}
+.donut {
+  padding-bottom: 8rem;
+  padding-top: 0 !important;
+}
