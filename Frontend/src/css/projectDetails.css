@@ -58,3 +58,43 @@
   margin-top: 2rem;
   margin-right: 3rem;
 }
+.select {
+  color: gray;
+  border: 1.5px solid rgb(181, 179, 179);
+  border-radius: 5px;
+}
+.select option {
+  color: gray;
+}
+.task-headings {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.task-headings strong {
+  color: #3b2046;
+  letter-spacing: 1.2px;
+  font-size: 1.1rem;
+}
+.tasks {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.no-data-found {
+  margin: 5rem auto;
+  margin-left: 40rem;
+}
+.no-data-found img {
+  width: 500px;
+  height: 500px;
+}
+.no-data-found p {
+  margin-left: 5rem;
+  color: gray;
+  letter-spacing: 1.2px;
+  font-size: 1.3rem;
+}
+.no-data-found h3 {
+  margin-left: 10.5rem;
+  color: #3b2046;
+  letter-spacing: 1.2px;
+}
