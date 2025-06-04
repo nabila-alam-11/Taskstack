@@ -85,9 +85,20 @@ app.post("/auth/signup", async (req, res) => {
       email: req.body.email,
       hashedPassword: hashedPassword,
     });
+
+    // Geneatre token
+    const token = jwt.sign(
+      {
+        id: savedUser._id,
+        email: savedUser.email,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" }
+    );
     res.status(201).json({
       success: true,
       message: `${name} added successfully.`,
+      token,
       User: savedUser,
     });
   } catch (error) {
