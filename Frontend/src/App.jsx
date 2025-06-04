@@ -7,16 +7,16 @@ import TaskModal from "./components/TaskModal";
 import Loader from "./components/Loader";
 
 const App = () => {
-  const { data: user, loading } = useFetch(
+  const { data: user, loading: ownerLoading } = useFetch(
     "https://workasana-backend-eight.vercel.app/auth/me",
     []
   );
 
-  const { data: tasks } = useFetch(
+  const { data: tasks, loading: tasksLoading } = useFetch(
     "https://workasana-backend-eight.vercel.app/v1/tasks"
   );
 
-  const { data } = useFetch(
+  const { data, loading: projectsLoading } = useFetch(
     "https://workasana-backend-eight.vercel.app/v1/projects"
   );
 
@@ -42,7 +42,7 @@ const App = () => {
       <Sidebar />
       <div className="main">
         <h1 className="title">Dashboard</h1>
-        {!loading ? (
+        {!tasksLoading || !projectsLoading || !ownerLoading ? (
           <>
             <div className="projects-container">
               <div className="mb-4 gap-4">
@@ -83,7 +83,7 @@ const App = () => {
                 {filterByStatus?.map((tasks) => (
                   <Link
                     key={tasks?._id}
-                    to={`/task/${tasks?.name}`}
+                    to={`/task/${tasks?._id}`}
                     className="card me-5  task"
                   >
                     <div className="card-body">

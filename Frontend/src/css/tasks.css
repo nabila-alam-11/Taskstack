@@ -32,4 +32,19 @@
 .task-details {
   width: 50rem;
   margin-left: 21rem;
+  margin-top: 2rem;
+}
+.complete-btn {
+  padding-inline: 1rem;
+  padding-block: 0.43rem;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #562968;
+  background-color: #562968;
+  color: #fff;
+  letter-spacing: 1.2px;
+  font-family: sans-serif;
+}
+.complete-btn:hover {
+  background-color: #74358d;
 }

@@ -30,7 +30,35 @@ export function TaskProvider({ children }) {
       throw error;
     }
   };
+  const updateTaskStatus = async (taskId, updatedData) => {
+    try {
+      const response = await fetch(
+        `https://workasana-backend-eight.vercel.app/v1/tasks/${taskId}/update-task-info`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedData),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.message || `Failed Status: ${response.status}`
+        );
+      }
+
+      const updatedTask = await response.json();
+      return updatedTask;
+    } catch (error) {
+      throw error;
+    }
+  };
   return (
-    <TaskContext.Provider value={{ addTask }}>{children}</TaskContext.Provider>
+    <TaskContext.Provider value={{ addTask, updateTaskStatus }}>
+      {children}
+    </TaskContext.Provider>
   );
 }

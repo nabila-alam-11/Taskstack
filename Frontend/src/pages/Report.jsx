@@ -13,6 +13,7 @@ import {
 } from "chart.js";
 import "react-circular-progressbar/dist/styles.css";
 import useFetch from "../useFetch";
+import Loader from "../components/Loader";
 
 ChartJS.register(
   BarElement,
@@ -24,7 +25,7 @@ ChartJS.register(
 );
 
 const Report = () => {
-  const { data: tasks } = useFetch(
+  const { data: tasks, loading } = useFetch(
     "https://workasana-backend-eight.vercel.app/v1/tasks"
   );
   const { data: user } = useFetch(
@@ -106,7 +107,7 @@ const Report = () => {
         <Sidebar />
         <div className="main">
           <h1 className="title">Reports</h1>
-          <p>Loading data...</p>
+          <Loader />
         </div>
       </div>
     );
@@ -406,101 +407,115 @@ const Report = () => {
       <div className="main">
         <h1 className="title mb-0">Reports</h1>
         <h3 className="report-heading text-center">Report Overview</h3>
-        <div
-          className="center-div"
-          style={{
-            height: "400px",
-            marginLeft: "21rem",
-          }}
-        >
-          {Object.keys(statusDistributionCount).length > 0 ? (
-            <>
-              <div className="d-flex">
-                <div style={{ height: "20rem", width: "25rem" }} className="">
-                  <h4 className="text-center">Total Work Done Last Week</h4>
+        {!loading ? (
+          <>
+            <div
+              className="center-div"
+              style={{
+                height: "400px",
+                marginLeft: "21rem",
+              }}
+            >
+              {Object.keys(statusDistributionCount).length > 0 ? (
+                <>
+                  <div className="d-flex">
+                    <div
+                      style={{ height: "20rem", width: "25rem" }}
+                      className=""
+                    >
+                      <h4 className="text-center">Total Work Done Last Week</h4>
 
-                  <Bar data={barChartData} options={barChartOptions} />
-                </div>
-                <div
-                  style={{
-                    height: "20rem",
-                    width: "25rem",
-                    paddingInline: "0rem",
-                    marginLeft: "2rem",
-                  }}
-                  className=""
-                >
-                  <h4 className="text-center">Tasks Status Distribution</h4>
+                      <Bar data={barChartData} options={barChartOptions} />
+                    </div>
+                    <div
+                      style={{
+                        height: "20rem",
+                        width: "25rem",
+                        paddingInline: "0rem",
+                        marginLeft: "2rem",
+                      }}
+                      className=""
+                    >
+                      <h4 className="text-center">Tasks Status Distribution</h4>
 
-                  <Pie
-                    data={statusDistributionData}
-                    options={pieOptions}
-                    key={Object.keys(statusDistributionCount).join(",")}
-                  />
-                </div>
-                <div style={{ width: "25rem", height: "20rem" }} className="">
-                  <h4 className="text-center">
-                    Completed vs Incompleted Tasks
-                  </h4>
-                  <Pie data={dataForDonut} options={options} />
-                </div>
-              </div>
-              <div className="d-flex mt-5 mb-5">
-                <div
-                  style={{
-                    width: "37rem",
-                    height: "25rem",
-                    margin: "2rem auto",
-                  }}
-                  className=""
-                >
-                  <h4 className="text-center mt-5">Tasks closed by Team</h4>
+                      <Pie
+                        data={statusDistributionData}
+                        options={pieOptions}
+                        key={Object.keys(statusDistributionCount).join(",")}
+                      />
+                    </div>
+                    <div
+                      style={{ width: "25rem", height: "20rem" }}
+                      className=""
+                    >
+                      <h4 className="text-center">
+                        Completed vs Incompleted Tasks
+                      </h4>
+                      <Pie data={dataForDonut} options={options} />
+                    </div>
+                  </div>
+                  <div className="d-flex mt-5 mb-5">
+                    <div
+                      style={{
+                        width: "37rem",
+                        height: "25rem",
+                        margin: "2rem auto",
+                      }}
+                      className=""
+                    >
+                      <h4 className="text-center mt-5">Tasks closed by Team</h4>
 
-                  <Bar
-                    data={completedTasksByTeamData}
-                    options={completeTasksByTeamOptions}
-                  />
-                </div>
-                <div
-                  style={{
-                    width: "35rem",
-                    height: "25rem",
-                    marginLeft: "5rem",
-                    marginTop: "2rem",
-                  }}
-                  className=""
-                >
-                  <h4 className="text-center mt-5">
-                    Total days of work pending
-                  </h4>
-                  <Bar
-                    data={pendingDaysChartData}
-                    options={pendingDaysChartOptions}
-                  />
-                </div>
-              </div>
+                      <Bar
+                        data={completedTasksByTeamData}
+                        options={completeTasksByTeamOptions}
+                      />
+                    </div>
+                    <div
+                      style={{
+                        width: "35rem",
+                        height: "25rem",
+                        marginLeft: "5rem",
+                        marginTop: "2rem",
+                      }}
+                      className=""
+                    >
+                      <h4 className="text-center mt-5">
+                        Total days of work pending
+                      </h4>
+                      <Bar
+                        data={pendingDaysChartData}
+                        options={pendingDaysChartOptions}
+                      />
+                    </div>
+                  </div>
 
-              <div>
-                <div
-                  style={{
-                    width: "25rem",
-                    margin: "2rem",
-                    height: "30rem",
-                    marginBlock: "5rem",
-                  }}
-                >
-                  <h4 className="text-center mt-5">Tasks closed by Owner</h4>
-                  <Bar
-                    data={completedTasksBarData}
-                    options={completedTasksBarOptions}
-                  />
-                </div>
-              </div>
-            </>
-          ) : (
-            <p>No task data to display.</p>
-          )}
-        </div>
+                  <div>
+                    <div
+                      style={{
+                        width: "25rem",
+                        margin: "2rem",
+                        height: "30rem",
+                        marginBlock: "5rem",
+                      }}
+                    >
+                      <h4 className="text-center mt-5">
+                        Tasks closed by Owner
+                      </h4>
+                      <Bar
+                        data={completedTasksBarData}
+                        options={completedTasksBarOptions}
+                      />
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <p>No task data to display.</p>
+              )}
+            </div>
+          </>
+        ) : (
+          <Loader />
+        )}
       </div>
     </div>
   );
