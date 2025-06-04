@@ -69,6 +69,7 @@ const TaskModal = () => {
         timeToComplete: 0,
         status: "",
       });
+      window.location.reload();
     } catch (error) {
       console.log("Failed to add task: ", error.message);
     }
