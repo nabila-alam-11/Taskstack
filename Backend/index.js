@@ -5,11 +5,11 @@ const bcrypt = require("bcrypt");
 
 const app = express();
 
-// const corsOptions = {
-//   origin: "*",
-//   credentials: true,
-//   optionSuccessStatus: 200,
-// };
+const corsOptions = {
+  origin: "*",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
 app.use(cors());
 app.use(express.json());
 

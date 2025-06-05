@@ -20,6 +20,7 @@ const ProjectDetails = () => {
     "https://workasana-backend-eight.vercel.app/v1/tags"
   );
   const tasks = data?.filter((task) => task?.project?.name === projectName);
+  console.log(tasks);
 
   const getsStatusColor = (status) => {
     if (status === "To Do") return "#f9e79f";
