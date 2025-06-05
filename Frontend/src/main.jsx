@@ -13,6 +13,7 @@ import ProjectDetails from "./pages/ProjectDetails.jsx";
 import TaskDetails from "./pages/TaskDetails.jsx";
 import { TaskProvider } from "./contexts/TaskContext.jsx";
 import { TeamProvider } from "./contexts/TeamContext.jsx";
+import Logout from "./components/Logout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,10 +27,6 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
-  },
-  {
-    path: "/projects",
-    element: <Projects />,
   },
   {
     path: "/teams",
@@ -50,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "/task/:taskId",
     element: <TaskDetails />,
+  },
+  {
+    path: "/logout",
+    element: <Logout />,
   },
 ]);
 createRoot(document.getElementById("root")).render(

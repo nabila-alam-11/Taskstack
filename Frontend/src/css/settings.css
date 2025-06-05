@@ -1,0 +1,29 @@
+.profile-img {
+  margin-left: 20rem;
+  margin-top: 1.5rem;
+  width: 10rem;
+  height: 10rem;
+}
+.user-name {
+  margin-top: 3rem;
+}
+.user-tasks {
+  margin-left: 21rem;
+  width: 50rem;
+  margin-bottom: 3rem;
+}
+.user-tasks h3 {
+  margin-block: 2rem;
+}
+.logout-btn {
+  margin-left: 21rem;
+  background-color: purple;
+  color: white;
+  padding-inline: 1rem;
+  padding-block: 0.45rem;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  margin-top: 10rem;
+  letter-spacing: 1.2px;
+  text-decoration: none;
+}

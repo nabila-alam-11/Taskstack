@@ -16,7 +16,6 @@ const Sidebar = () => {
 
       {/* Desktop Sidebar */}
       <div className="d-none d-md-block  vh-100 border-end sidebar">
-        {/* App Name */}
         <div
           className="text-white text-center py-3  brand"
           style={{ width: "250px" }}
