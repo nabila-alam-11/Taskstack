@@ -1,6 +1,6 @@
 import Sidebar from "../components/Sidebar";
 import useFetch from "../useFetch";
-import Profile from "../assets/Profile.jpg";
+import Profile from "../assets/profile.jpg";
 import "../css/settings.css";
 import { Link, Navigate } from "react-router-dom";
 
