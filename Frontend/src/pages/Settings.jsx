@@ -3,9 +3,10 @@ import useFetch from "../useFetch";
 import Profile from "../assets/profile.jpg";
 import "../css/settings.css";
 import { Link, Navigate } from "react-router-dom";
+import Loader from "../components/Loader";
 
 const Settings = () => {
-  const { data: user, loading: ownerLoading } = useFetch(
+  const { data: user, loading } = useFetch(
     "https://workasana-backend-eight.vercel.app/auth/me",
     []
   );
@@ -25,26 +26,32 @@ const Settings = () => {
       <h1 className="title" style={{ width: "86dvw" }}>
         Settings
       </h1>
-      <div className="d-flex">
-        <img src={Profile} className="profile-img" />
-        <div>
-          <h3 className="user-name">{user?.name}</h3>
-          <p>Full Stack Developer</p>
-        </div>
-      </div>
-      <div className="user-tasks">
-        <h3>My Tasks</h3>
-        <ul className="list-group">
-          {userTasks?.map((task) => (
-            <li key={task._id} className="list-group-item">
-              {task?.name}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <Link to="/logout" className="logout-btn">
-        Logout
-      </Link>
+      {!loading ? (
+        <>
+          <div className="d-flex">
+            <img src={Profile} className="profile-img" />
+            <div>
+              <h3 className="user-name">{user?.name}</h3>
+              <p>Full Stack Developer</p>
+            </div>
+          </div>
+          <div className="user-tasks">
+            <h3>My Tasks</h3>
+            <ul className="list-group">
+              {userTasks?.map((task) => (
+                <li key={task._id} className="list-group-item">
+                  {task?.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <Link to="/logout" className="logout-btn">
+            Logout
+          </Link>
+        </>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };
