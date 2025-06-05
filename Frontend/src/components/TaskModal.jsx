@@ -1,8 +1,8 @@
-import "../css/tasks.css";
-import Select from "react-select";
-import useFetch from "../useFetch";
-import useTaskContext from "../contexts/TaskContext";
 import { useState } from "react";
+import useFetch from "../useFetch";
+import Select from "react-select";
+import useTaskContext from "../contexts/TaskContext";
+import "../css/tasks.css";
 
 const TaskModal = () => {
   const { data: teams } = useFetch(

@@ -1,6 +1,9 @@
 import Sidebar from "../components/Sidebar";
+import Loader from "../components/Loader";
+import useFetch from "../useFetch";
 import "../css/sidebar.css";
 import "../css/report.css";
+
 import { Bar, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -12,8 +15,6 @@ import {
   ArcElement,
 } from "chart.js";
 import "react-circular-progressbar/dist/styles.css";
-import useFetch from "../useFetch";
-import Loader from "../components/Loader";
 
 ChartJS.register(
   BarElement,
@@ -172,7 +173,7 @@ const Report = () => {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
-    cutout: "60%", // This creates the donut hole; adjust percentage as needed
+    cutout: "60%",
     plugins: {
       legend: {
         position: "top",

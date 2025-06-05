@@ -1,18 +1,17 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { TaskProvider } from "./contexts/TaskContext.jsx";
+import { TeamProvider } from "./contexts/TeamContext.jsx";
 import "bootstrap/dist/css/bootstrap.css";
+import App from "./App.jsx";
 import Login from "./components/Login.jsx";
 import Signup from "./components/Signup.jsx";
-import Projects from "./pages/Projects.jsx";
 import Teams from "./pages/Teams.jsx";
 import Report from "./pages/Report.jsx";
 import Settings from "./pages/Settings.jsx";
 import ProjectDetails from "./pages/ProjectDetails.jsx";
 import TaskDetails from "./pages/TaskDetails.jsx";
-import { TaskProvider } from "./contexts/TaskContext.jsx";
-import { TeamProvider } from "./contexts/TeamContext.jsx";
 import Logout from "./components/Logout.jsx";
 
 const router = createBrowserRouter([

@@ -4,7 +4,6 @@ import useTeamContext from "../contexts/TeamContext";
 
 const TeamModal = () => {
   const { addTeam } = useTeamContext();
-  const [succcess, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -29,10 +28,6 @@ const TeamModal = () => {
         name: "",
         description: "",
       });
-      setSuccess(true);
-      setTimeout(() => {
-        setSuccess(false);
-      }, 1000);
     } catch (error) {
       console.log(formData);
 

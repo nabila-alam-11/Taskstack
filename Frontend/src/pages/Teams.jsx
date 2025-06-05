@@ -4,13 +4,12 @@ import "../css/sidebar.css";
 import useFetch from "../useFetch";
 import TeamModal from "../components/TeamModal";
 import Loader from "../components/Loader";
-import { useState } from "react";
 
 const Teams = () => {
   const { data, loading } = useFetch(
     "https://workasana-backend-eight.vercel.app/v1/teams"
   );
-  const [success, setSuccess] = useState(true);
+
   return (
     <div>
       <Sidebar />

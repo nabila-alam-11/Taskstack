@@ -34,7 +34,7 @@ const TaskDetails = () => {
       window.location.reload();
       setStatus("Completed");
     } catch (error) {
-      console.log(error.message);
+      throw error;
     }
   };
 

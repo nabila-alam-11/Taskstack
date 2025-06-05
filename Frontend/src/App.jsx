@@ -1,10 +1,10 @@
-import Sidebar from "./components/Sidebar";
-import "../src/css/app.css";
-import useFetch from "./useFetch";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import useFetch from "./useFetch";
 import TaskModal from "./components/TaskModal";
+import Sidebar from "./components/Sidebar";
 import Loader from "./components/Loader";
+import "../src/css/app.css";
 
 const App = () => {
   const { data: user, loading: ownerLoading } = useFetch(

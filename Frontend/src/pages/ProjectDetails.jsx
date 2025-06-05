@@ -1,12 +1,11 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
 import useFetch from "../useFetch";
-import { Link } from "react-router-dom";
-import "../css/projectDetails.css";
+import Sidebar from "../components/Sidebar";
 import TaskModal from "../components/TaskModal";
 import Loader from "../components/Loader";
-import { useState } from "react";
 import noData from "../assets/no-data.jpg";
+import "../css/projectDetails.css";
 
 const ProjectDetails = () => {
   const { projectName } = useParams();

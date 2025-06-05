@@ -1,9 +1,9 @@
-import Sidebar from "../components/Sidebar";
+import { Link } from "react-router-dom";
 import useFetch from "../useFetch";
+import Sidebar from "../components/Sidebar";
+import Loader from "../components/Loader";
 import Profile from "../assets/profile.jpg";
 import "../css/settings.css";
-import { Link, Navigate } from "react-router-dom";
-import Loader from "../components/Loader";
 
 const Settings = () => {
   const { data: user, loading } = useFetch(
@@ -18,7 +18,7 @@ const Settings = () => {
   const userTasks = tasks?.filter((task) =>
     task?.owners?.some((owner) => owner.name === user?.name)
   );
-  console.log(userTasks);
+
   return (
     <div>
       <Sidebar />

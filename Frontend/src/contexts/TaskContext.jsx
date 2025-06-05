@@ -3,6 +3,7 @@ import { createContext, useContext } from "react";
 const TaskContext = createContext();
 
 const useTaskContext = () => useContext(TaskContext);
+
 export default useTaskContext;
 
 export function TaskProvider({ children }) {
@@ -23,10 +24,10 @@ export function TaskProvider({ children }) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Failed to create task.");
       }
+
       const addedTask = await response.json();
       return addedTask;
     } catch (error) {
-      console.log(error.message);
       throw error;
     }
   };

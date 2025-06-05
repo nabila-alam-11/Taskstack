@@ -1,11 +1,11 @@
 import { useState } from "react";
-import "../css/login.css";
 import { Link, useNavigate } from "react-router-dom";
+import "../css/login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -22,7 +22,6 @@ const Login = () => {
       );
 
       const data = await res.json();
-      console.log(data);
 
       if (!res.ok) {
         setError(data.message || "Login Falied");

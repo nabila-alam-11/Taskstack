@@ -28,7 +28,6 @@ export function TeamProvider({ children }) {
       const addedTeam = await response.json();
       return addedTeam;
     } catch (error) {
-      console.log(error.message);
       throw error;
     }
   };
