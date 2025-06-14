@@ -20,7 +20,7 @@ const Sidebar = () => {
           className="text-white text-center py-3  brand"
           style={{ width: "250px" }}
         >
-          Workasana
+          Taskstack
         </div>
 
         <ul className="nav flex-column">

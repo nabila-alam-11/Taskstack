@@ -41,7 +41,7 @@ const Login = () => {
       <nav className="navbar bg-body-tertiary login-navbar">
         <div className="container-fluid">
           <a className="navbar-brand text-blue fw-3" href="#">
-            Workasana
+            Taskstack
           </a>
         </div>
       </nav>
