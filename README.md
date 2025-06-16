@@ -118,7 +118,7 @@ Sample Response: <br>
 [{name, project, team, owners,tags, timeToComplete, status, dueOn, createdAt, updatedAt},...]
 ```
 
-## **GET /v1/teams**<br>
+### **GET /v1/teams**<br>
 
 List all teams<br>
 Sample Response: <br>
@@ -127,7 +127,7 @@ Sample Response: <br>
 [{_id,name, description}, ...]
 ```
 
-## **GET /v1/users**<br>
+### **GET /v1/users**<br>
 
 List all users<br>
 Sample Response: <br>
@@ -136,7 +136,7 @@ Sample Response: <br>
 [{_id, name, email, hashedPassword}, ....]
 ```
 
-## **GET /v1/tags**<br>
+### **GET /v1/tags**<br>
 
 List all tags<br>
 Sample Response: <br>
@@ -145,7 +145,7 @@ Sample Response: <br>
 [{_id,name},...]
 ```
 
-## **GET /v1/projects**<br>
+### **GET /v1/projects**<br>
 
 List all projects<br>
 Sample Response: <br>
@@ -199,7 +199,7 @@ Sample Response:<br>
 {name}
 ```
 
-## **POST /v1/projects**
+### **POST /v1/projects**
 
 Create a new project<br>
 Sample Response:<br>
@@ -235,7 +235,7 @@ Sample Response: <br>
 {name, email, password}
 ```
 
-## **POST /v1/projects/:projectName/project-info**<br>
+### **POST /v1/projects/:projectName/project-info**<br>
 
 Update team info with the specified project name<br>
 Sample Response: <br>
