@@ -81,6 +81,12 @@ Get a quick overview of your team's progress:
 - Bar chart for tasks closed by team
 - Bar chart for pending work duration
 
+### Settings
+
+- Shows logged-in user’s profile
+- Displays a list of all tasks assigned to the user.
+- Allows user to log out securely.
+
 ---
 
 ## API Reference
